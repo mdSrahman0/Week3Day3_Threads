@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Week3Day3_Threads</string>
-    <string name="button_options">Click "Generate" to generate 1000 sorted integers, "Pie" to calculate
-            pie to 12 digits, "Fibonacci" to calculate fibonacci to the 20th iteration.</string>
+    <string name="button_options">Click "Generate" to generate 1000 sorted integers or "Pie" to calculate
+            pie to 12 digits.</string>
+    <string name="calculate_pie">Calculate Pie</string>
+    <string name="generate_numbers">Generate Random Numbers</string>
 </resources>

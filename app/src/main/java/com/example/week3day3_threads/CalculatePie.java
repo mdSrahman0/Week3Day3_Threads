@@ -9,36 +9,42 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class CalculatePie extends AppCompatActivity {
 
-    TextView tvDisplay;
+    TextView tvDisplayPie;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_pie);
-        tvDisplay = findViewById(R.id.tvDisplay);
+        tvDisplayPie = findViewById(R.id.tvDisplay);
         intent = getIntent();
     }
 
     public void onClick(View view) {
         Log.d("TAG", "onClick: ");
-        Runnable thread = new Runnable() {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 // We use an infinite sequence to calculate to calculate pi: 1 - 1/3 + 1/5 - 1/7.....
                 double pi = 0;
                 double s = 1;
-                int n = 1000;
-                for(int i = 1; i < n; i=1+2) {
+                int n = 1000000;
+                for(int i = 1; i < n; i+=2) {
                     pi += s/i;
                     s = -s;
                 }
                 double finalPi = pi*4;
-                Log.d("TAG", "run: " + finalPi);
+                // String pie = String.valueOf(finalPi);  // this was going to be used to display to Textview
+                NumberFormat formatter = new DecimalFormat("#0.00000000000");
+                Log.d("TAG", "run: " + (formatter.format(finalPi))); // log the 12 digits
             }
         };
-        //Thread thread = new Thread(runnable());
-        //new Thread(thread).start();
+        Thread thread = new Thread(runnable);
+        thread.start();
+        //tvDisplayPie.setText(pie);
     }
 }
